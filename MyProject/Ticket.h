@@ -18,4 +18,8 @@ protected:
 	Event* event;
 	int idRow;
 	int idSeat;
+
+
+public:
+
 };

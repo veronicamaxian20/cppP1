@@ -18,7 +18,7 @@ public:
 	~Tickets();
 	Tickets& operator=(const Tickets&);
 
-	//validation for tickets
-	//add ticket
-	//display ticket
+	bool validateTicket(int);
+	void addTicket(const Ticket&);
+	void displayTicket(int);
 };

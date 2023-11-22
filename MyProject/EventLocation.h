@@ -3,12 +3,11 @@
 #include <string>
 #include "Event.h"
 
-using namespace std;
 
 class EventLocation {
 
 private:
-	string* locationName;
+	std::string* locationName;
 	char* adress;
 	Event* events;
 
