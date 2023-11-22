@@ -9,11 +9,17 @@ enum EVENT_TYPE {CONCERT, MOVIE, SPORT, THEATRE, DIVERSE};
 class Event {
 private:
 	const char* eventName;
-
-
+	char date[11] = "";
+	char time[6];
 	double duration;
 	EVENT_TYPE eventType;
+	bool isACharityEvent;
 
-	static int reservedSeats;
+
+public:
+	//static int reservedSeats;
+	static int TOTAL_EVENTS;
 
 };
+
+
