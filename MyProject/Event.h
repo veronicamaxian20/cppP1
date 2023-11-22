@@ -3,9 +3,11 @@
 #include <string>
 #include "EventLocation.h"
 
-enum EVENT_TYPE {CONCERT, MOVIE, SPORT, THEATRE, DIVERSE};
 
-class Event {
+class Event 
+{
+public:
+	enum EVENT_TYPE {CONCERT, MOVIE, SPORT, THEATRE, DIVERSE};
 private:
 	char* eventName;
 	EVENT_TYPE eventType;
