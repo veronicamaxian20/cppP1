@@ -36,3 +36,38 @@ EventLocation::EventLocation(std::string locationName,int maxNrOfSeats, SEAT_TYP
 }
 
 
+
+
+//getteri
+int EventLocation::getReservedSeats() const {
+    return this->reservedSeats;
+}
+
+
+std::string EventLocation::getLocationName() const {
+    return this->locationName;
+}
+
+char* EventLocation::getAddress() const {
+    return this->address;
+}
+
+int EventLocation::getMaxNrOfSeats() const {
+    return this->maxNrOfSeats;
+}
+
+int EventLocation::getNrOfRows() const {
+    return this->nrOfRows;
+}
+
+int** EventLocation::getIdSeat() const {
+    return this->idSeat;
+}
+
+EventLocation::SEAT_TYPE EventLocation::getSeatType() const {
+    return this->seatType;
+}
+
+bool EventLocation::getIfIsFull() const {
+    return this->isFull;
+}
