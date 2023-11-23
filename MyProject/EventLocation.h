@@ -20,7 +20,7 @@ private:
 	bool isFull;	
 public:
 	EventLocation();
-	EventLocation(std::string, SEAT_TYPE);
+	EventLocation(std::string,int, SEAT_TYPE);
 	EventLocation(const EventLocation&);
 	~EventLocation();
 	EventLocation& operator=(const EventLocation&);
