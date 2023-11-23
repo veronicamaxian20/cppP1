@@ -9,6 +9,7 @@ class Ticket {
 	static constexpr const int PRICE_VIP = 75;
 	static constexpr const int PRICE_WHEELCHAIR = 40;
 	static int* idRandom;
+	static int contor;
 protected:
 	const int idTicket;
 	std::string holder;
@@ -36,4 +37,6 @@ public:
 	void setEvent(const Event&);
 
 
+	void generateRandomID();
+	int customRandom();
 };
