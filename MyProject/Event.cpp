@@ -100,6 +100,50 @@ Event& Event::operator=(const Event& source) {
 	return *this;
 }
 
+std::istream& operator>>(std::istream& in, Event& obj) {
+	std::cout << "Enter event name: ";
+	char tempName[100];
+	in.getline(tempName, 100);
+	in.clear();
+
+	delete[] obj.eventName;
+	obj.eventName = new char[strlen(tempName) + 1];
+	strcpy(obj.eventName, tempName);
+
+	std::cout << "Enter event type (CONCERT, MOVIE, SPORT, THEATRE, DIVERSE): ";
+	char eventTypeStr[20];
+	in >> eventTypeStr;
+
+	if (strcmp(eventTypeStr, "CONCERT") == 0) {
+		obj.setEventType(Event::EVENT_TYPE::CONCERT);
+	}
+	else if (strcmp(eventTypeStr, "MOVIE") == 0) {
+		obj.setEventType(Event::EVENT_TYPE::MOVIE);
+	}
+	else if (strcmp(eventTypeStr, "SPORT") == 0) {
+		obj.setEventType(Event::EVENT_TYPE::SPORT);
+	}
+	else if (strcmp(eventTypeStr, "THEATRE") == 0) {
+		obj.setEventType(Event::EVENT_TYPE::THEATRE);
+	}
+	else if (strcmp(eventTypeStr, "DIVERSE") == 0) {
+		obj.setEventType(Event::EVENT_TYPE::DIVERSE);
+	}
+	else {
+		throw std::invalid_argument("Invalid event type");
+	}
+
+	std::cout << "Enter event date (DD-MM-YYYY): ";
+	char tempDate[11];
+	in >> tempDate;
+	obj.setDate(tempDate);
+
+	std::cout << "Enter event duration: ";
+	in >> obj.duration;
+
+	return in;
+}
+
 
 std::ostream& operator<<(std::ostream& out, const Event& obj) {
 	out << "Event{ "<<std::endl<< "Name= " << obj.eventName << ", "
