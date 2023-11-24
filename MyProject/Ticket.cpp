@@ -30,36 +30,39 @@ Ticket::~Ticket(){
     delete event;
 }
 
-Ticket::Ticket(const Ticket& source) : idTicket(source.idTicket) {
+Ticket::Ticket(const Ticket& source) 
+    : idTicket(source.idTicket) 
+{
     if (source.event) {
-        event = new Event(*(source.event));
+        this->event = new Event(*(source.event));
     }
     else {
-        event = nullptr;
+        this->event = nullptr;
     }
-    holder = source.holder;
-    price = source.price;
-    idRow = source.idRow;
-    idSeat = source.idSeat;
+    this->holder = source.holder;
+    this->price = source.price;
+    this->idRow = source.idRow;
+    this->idSeat = source.idSeat;
 }
 
 Ticket& Ticket::operator=(const Ticket& source) {
     if (this != &source) {
-        delete event;
+        //delete event;
 
         if (source.event) {
-            event = new Event(*(source.event));
+            this->event = new Event(*(source.event));
         }
         else {
-            event = nullptr;
+            this->event = nullptr;
         }
-        holder = source.holder;
-        price = source.price;
-        idRow = source.idRow;
-        idSeat = source.idSeat;
+        this->holder = source.holder;
+        this->price = source.price;
+        this->idRow = source.idRow;
+        this->idSeat = source.idSeat;
     }
     return *this;
 }
+
 
 void Ticket::generateRandomID() {
     idRandom = new int[100];
@@ -67,9 +70,50 @@ void Ticket::generateRandomID() {
         idRandom[i] = customRandom();
     }
 }
-
 int Ticket::customRandom() {
     contor = (contor * 16807) % 701;
     return contor;
 }
 
+int Ticket::getId() const {
+    return this->idTicket;
+}
+std::string Ticket::getHolder() const {
+    return this->holder;
+}
+double Ticket::getPrice() const {
+    return this->price;
+}
+Event* Ticket::getEvent() const {
+    return this->event;
+}
+int Ticket::getIdRow() const {
+    return this->idRow;
+}
+int Ticket::getIdSeat() const {
+    return this->idSeat;
+}
+
+
+void Ticket::setHolder(std::string) {
+    if (holder != ""){
+        this->holder = holder;
+    }
+    else
+    {
+        throw new std::exception("Empty holder");
+    }
+}
+void Ticket::setPrice(double price) {
+    if (price > 0.0)
+    {
+        this->price = price;
+    }
+    else
+    {
+        throw new std::exception("Invalid price");
+    }
+}
+void Ticket::setEvent(const Event& obj) {
+    *this->event = obj;
+}

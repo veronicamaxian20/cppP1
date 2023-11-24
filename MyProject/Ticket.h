@@ -26,7 +26,7 @@ public:
 	~Ticket();
 	Ticket& operator=(const Ticket& source);
 
-	const int getId() const;
+	int getId() const;
 	std::string getHolder()const;
 	double getPrice() const;
 	Event* getEvent() const;
@@ -34,8 +34,8 @@ public:
 	int getIdSeat() const;
 
 	void setHolder(std::string);
-	void setPrice(double);
-	void setEvent(Event*); //const Event&
+	void setPrice(double );
+	void setEvent(const Event&);
 
 
 	void generateRandomID();
