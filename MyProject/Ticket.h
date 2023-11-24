@@ -17,26 +17,26 @@ protected:
 	Event* event;
 	int idRow;
 	int idSeat;
-
-public:
-	Ticket();
-	Ticket(std::string, double, Event*);
-	Ticket(const Ticket&);
-	~Ticket();
-	Ticket& operator=(const Ticket& source);
-
-	const int getId() const;
-	std::string getHolder()const;
-	double getPrice() const;
-	Event* getEvent() const;
-	int getIdRow() const;
-	int getIdSeat() const;
-
-	void setHolder(std::string);
-	void setPrice(double);
-	void setEvent(const Event&);
-
-
-	void generateRandomID();
-	int customRandom();
+//
+//public:
+//	Ticket();
+//	Ticket(std::string, double, Event*);
+//	Ticket(const Ticket&);
+//	~Ticket();
+//	Ticket& operator=(const Ticket& source);
+//
+//	const int getId() const;
+//	std::string getHolder()const;
+//	double getPrice() const;
+//	Event* getEvent() const;
+//	int getIdRow() const;
+//	int getIdSeat() const;
+//
+//	void setHolder(std::string);
+//	void setPrice(double);
+//	void setEvent(const Event&);
+//
+//
+//	void generateRandomID();
+//	int customRandom();
 };
