@@ -1,16 +1,19 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include "EventLocation.h"
 
-enum class EVENT_TYPE { CONCERT = 1, MOVIE, SPORT, THEATRE, DIVERSE };
 
 class Event 
 {
+public:
+	enum class EVENT_TYPE { CONCERT = 1, MOVIE, SPORT, THEATRE, DIVERSE };
+
 private:
 	char* eventName;
 	EVENT_TYPE eventType;
-	char date[10]; // Format: DD-MM-YYYY
+	char date[11]; // Format: DD-MM-YYYY
 	double duration; //in min
 
 	static int TOTAL_EVENTS;
@@ -43,9 +46,10 @@ public:
 	Event& operator=(const Event&);
 
 	
-	//op >>
-	//op <<
-
+	friend std::ostream& operator<<(std::ostream&, const Event&);
+	friend std::istream& operator>>(std::istream&, Event&);
+	
+	
 	//2 generic methods
 
 	//2 operatori - cred ca merge op[]

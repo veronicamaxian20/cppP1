@@ -8,7 +8,7 @@ int Event::getTotalNrOfEvents() {
 char* Event::getEventName() {
 	return this->eventName;
 }
-EVENT_TYPE Event::getEventType() {
+Event::EVENT_TYPE Event::getEventType() {
 	return this->eventType;
 }
 char* Event::getDate() {
@@ -39,7 +39,8 @@ void Event::setDate(const char* newDate) {
 	if (newDate[2] != '-' || newDate[5] != '-') {
 		throw std::exception("Wrong date format. Use '-'!");
 	}
-	strcpy_s(this->date, 10, newDate);
+	std::strncpy(this->date, newDate, sizeof(this->date) - 1);
+	this->date[sizeof(this->date)-1] = '\0';
 }
 void Event::setDuration(double duration) {
 	this->duration = duration;
@@ -60,9 +61,6 @@ Event::Event(const char* eventName, const char* date) {
 Event::~Event() {
 	if (eventName != nullptr) {
 		delete[] this->eventName;
-	}
-	if (date != nullptr) {
-		delete[] this->date;
 	}
 	Event::TOTAL_EVENTS--;
 }
@@ -100,4 +98,33 @@ Event& Event::operator=(const Event& source) {
 	}
 
 	return *this;
+}
+
+
+std::ostream& operator<<(std::ostream& out, const Event& obj) {
+	out << "Event{ "<<std::endl<< "Name= " << obj.eventName << ", "
+		<< std::endl<< "type= ";
+		switch (obj.eventType)
+		{
+		case Event::EVENT_TYPE::CONCERT:
+			out << "Concert, ";
+			break;
+		case Event::EVENT_TYPE::MOVIE:
+			out << "Movie, ";
+			break;
+		case Event::EVENT_TYPE::SPORT:
+			out << "Sport, ";
+			break;
+		case Event::EVENT_TYPE::THEATRE:
+			out << "Theatre, ";
+			break;
+		case Event::EVENT_TYPE::DIVERSE:
+			out << "Diverse, ";
+			break;
+		default:
+			break;
+		}	
+	out << std::endl << "date= " << obj.date << ", "
+		<< std::endl << "duration= " << obj.duration << " min. }" << std::endl;
+		return out;
 }
