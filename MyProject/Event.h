@@ -3,8 +3,6 @@
 #include <iostream>
 #include <string>
 #include "EventLocation.h"
-#include <list>;
-
 
 class Event 
 {
@@ -19,7 +17,7 @@ private:
 
 	static int TOTAL_EVENTS;
 	//bool isACharityEvent;
-	//EventLocation location;
+	EventLocation* location;
 
 public:
 	static int getTotalNrOfEvents();
@@ -29,14 +27,14 @@ public:
 	char* getDate();
 	double getDuration();
 
-	//EventLocation getEventLocation() const;
+	EventLocation* getEventLocation() const;
 	//bool getIfIsACharityEvent() const;
 
 	void setEventName(const char*);
 	void setEventType(EVENT_TYPE);
 	void setDate(const char* newDate);
 	void setDuration(double);
-	//void setLocation(const EventLocation&);
+	void setLocation(const EventLocation&);
 	//void setIfIsACharityEvent(bool);
 
 	Event();

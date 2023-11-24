@@ -115,6 +115,24 @@ void Ticket::setPrice(double price) {
 void Ticket::setEvent(const Event& obj) {
     *this->event = obj;
 }
+void Ticket::setIdRow(int row) {
+    if (row > 0 && row ) {
+        this->idRow = row;
+    }
+    else {
+        throw std::invalid_argument("Invalid row ID. Row ID should be greater than 0.");
+    }
+}
+
+void Ticket::setIdSeat(int seat) {
+    if (seat > 0) {
+        this->idSeat = seat;
+    }
+    else {
+        throw std::invalid_argument("Invalid seat ID. Seat ID should be greater than 0.");
+    }
+}
+
 
 
 std::ostream& operator<<(std::ostream& out, const Ticket& obj)
@@ -123,7 +141,7 @@ std::ostream& operator<<(std::ostream& out, const Ticket& obj)
     out << "===== ID       : " << obj.getId() << std::endl;
     out << "===== HOLDER   : " << obj.getHolder() << std::endl;
     out << "===== PRICE    : " << obj.getPrice() << std::endl;
-    out << "===== EVENT NAME   : " << obj.getEvent()->getEventName() << std::endl;
+   /* out << "===== EVENT NAME   : " << obj.getEvent()->getEventName() << std::endl;
     out << "===== EVENT TYPE   : ";
         switch (obj.getEvent()->getEventType())
         {
@@ -145,7 +163,7 @@ std::ostream& operator<<(std::ostream& out, const Ticket& obj)
         default:
             break;
         }
-    out << std::endl;
+    out << std::endl;*/
     out << "===== ROW      : " << obj.getIdRow() << std::endl;
     out << "===== SEAT     : " << obj.getIdSeat() << std::endl;
     out << "===================================================================" << std::endl;
@@ -154,15 +172,31 @@ std::ostream& operator<<(std::ostream& out, const Ticket& obj)
 }
 
 std::istream& operator>>(std::istream& in, Ticket& obj) {
-    in.ignore();
-    std::cout << "Enter Holder : "; std::getline(in, obj.holder);
+    //in.ignore();
+    std::cout << "Enter Holder : "; 
+    std::getline(in, obj.holder);
+
+    std::string priceStr;
+    //std::cout << "Enter price: ";
+    //std::getline(in, priceStr);
 
     std::cout << "Enter price: ";
     in >> obj.price;
-
-
+    //// Convert the string to double
+    //try {
+    //    obj.price = std::stod(priceStr);
+    //}
+    //catch (const std::invalid_argument&) {
+    //    std::cerr << "Invalid price format. Please enter a valid number." << std::endl;
+    //    //in.setstate(std::ios::failbit);  // Set the failbit to indicate a failure
+    //    return in;
+    //}
+    std::cout << "Enter row: ";
+    in >> obj.idRow;
+    std::cout << "Enter seat: ";
+    in >> obj.idSeat;
     /*std::cout << "Enter Event details:" << std::endl;*/
-    in >> *obj.event;
+    //in >> *obj.event;
 
     return in;
 

@@ -36,8 +36,8 @@ public:
 	void setHolder(std::string);
 	void setPrice(double );
 	void setEvent(const Event&);
-	/*void setIdRow(int);
-	void setIdSeat();*/
+	void setIdRow(int);
+	void setIdSeat(int);
 
 
 	void generateRandomID();
@@ -46,4 +46,7 @@ public:
 	friend std::ostream& operator<<(std::ostream&, const Ticket&);
 	friend std::istream& operator>>(std::istream&, Ticket&);
 
+	explicit operator double() {
+		return this->price;
+	}
 };
