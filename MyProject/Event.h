@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "EventLocation.h"
+#include <list>;
 
 
 class Event 
@@ -51,6 +52,7 @@ public:
 	
 	
 	//2 generic methods
+
 
 	//2 operatori - cred ca merge op[]
 
