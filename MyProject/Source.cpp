@@ -13,7 +13,10 @@ int main() {
 
 	std::cout << "Concert Event:" << std::endl << concert << std::endl;
 	std::cout << "Movie Event:" << std::endl << movie << std::endl;
-	
+	concert -= 20;
+	std::cout << "Concert Event after duration reduction:" << std::endl << concert << std::endl;
+
+
 	Ticket ticket;
 
 	std::cout << "Enter Ticket details:" << std::endl;

@@ -45,3 +45,4 @@ Tickets::~Tickets() {
 		delete[] this->tickets;
 	}
 }
+

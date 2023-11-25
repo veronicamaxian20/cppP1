@@ -172,3 +172,8 @@ std::ostream& operator<<(std::ostream& out, const Event& obj) {
 		<< std::endl << "duration= " << obj.duration << " min. }" << std::endl;
 		return out;
 }
+
+
+void Event::operator-=(double val) {
+	this->duration -= val;
+}
