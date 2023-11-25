@@ -16,7 +16,7 @@ private:
 	double duration; //in min
 
 	static int TOTAL_EVENTS;
-	//bool isACharityEvent;
+	bool isACharityEvent;
 	EventLocation* location;
 
 public:
@@ -28,14 +28,14 @@ public:
 	double getDuration();
 
 	EventLocation* getEventLocation() const;
-	//bool getIfIsACharityEvent() const;
+	bool getIfIsACharityEvent() const;
 
 	void setEventName(const char*);
 	void setEventType(EVENT_TYPE);
 	void setDate(const char* newDate);
 	void setDuration(double);
 	void setLocation(const EventLocation&);
-	//void setIfIsACharityEvent(bool);
+	void setIfIsACharityEvent(bool);
 
 	Event();
 	Event(const char* eventName, const char* date);
@@ -52,12 +52,11 @@ public:
 	//2 generic methods
 	
 
-	//2 operatori - cred ca merge op[]
+	//2 operatori
 	//-= scad durata
-
 	void operator-=(double val);
 
-	//==
+	//== 
 	bool operator==(const Event& otherEvent) const;
 };
 
