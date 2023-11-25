@@ -201,3 +201,7 @@ std::istream& operator>>(std::istream& in, Ticket& obj) {
     return in;
 
 }
+
+void Ticket::operator+=(double val) {
+    this->price += val;
+}

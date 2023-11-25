@@ -18,7 +18,7 @@ int main() {
 
 	std::cout << "Enter Ticket details:" << std::endl;
 	std::cin >> ticket;
-
+	ticket += 20; //adds 20 to price
 	// Display the entered ticket details
 	std::cout << "Ticket details entered:" << std::endl;
 	std::cout << ticket;

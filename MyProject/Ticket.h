@@ -49,4 +49,10 @@ public:
 	explicit operator double() {
 		return this->price;
 	}
+
+	//operator +=  add val to price
+	void operator+=(double val);
+
+
+
 };
