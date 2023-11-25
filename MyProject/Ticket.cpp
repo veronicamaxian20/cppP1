@@ -1,4 +1,5 @@
 #include "Ticket.h"
+#include "EventLocation.h"
 
 int Ticket::contor = 1;
 int* Ticket::idRandom = nullptr;
@@ -96,14 +97,11 @@ int Ticket::getIdSeat() const {
 
 
 void Ticket::setHolder(std::string) {
-    if (holder != ""){
+    if (!holder.empty()){
         this->holder = holder;
-    }
-    else
-    {
+    }else {
         throw new std::exception("Empty holder");
-    }
-}
+    }}
 void Ticket::setPrice(double price) {
     if (price > 0.0)
     {
@@ -116,4 +114,56 @@ void Ticket::setPrice(double price) {
 }
 void Ticket::setEvent(const Event& obj) {
     *this->event = obj;
+}
+
+
+std::ostream& operator<<(std::ostream& out, const Ticket& obj)
+{
+    out << "============================== TICKET ==============================" << std::endl;
+    out << "===== ID       : " << obj.getId() << std::endl;
+    out << "===== HOLDER   : " << obj.getHolder() << std::endl;
+    out << "===== PRICE    : " << obj.getPrice() << std::endl;
+    out << "===== EVENT NAME   : " << obj.getEvent()->getEventName() << std::endl;
+    out << "===== EVENT TYPE   : ";
+        switch (obj.getEvent()->getEventType())
+        {
+        case Event::EVENT_TYPE::CONCERT:
+            out << "Concert, ";
+            break;
+        case Event::EVENT_TYPE::MOVIE:
+            out << "Movie, ";
+            break;
+        case Event::EVENT_TYPE::SPORT:
+            out << "Sport, ";
+            break;
+        case Event::EVENT_TYPE::THEATRE:
+            out << "Theatre, ";
+            break;
+        case Event::EVENT_TYPE::DIVERSE:
+            out << "Diverse, ";
+            break;
+        default:
+            break;
+        }
+    out << std::endl;
+    out << "===== ROW      : " << obj.getIdRow() << std::endl;
+    out << "===== SEAT     : " << obj.getIdSeat() << std::endl;
+    out << "===================================================================" << std::endl;
+
+    return out;
+}
+
+std::istream& operator>>(std::istream& in, Ticket& obj) {
+    in.ignore();
+    std::cout << "Enter Holder : "; std::getline(in, obj.holder);
+
+    std::cout << "Enter price: ";
+    in >> obj.price;
+
+
+    /*std::cout << "Enter Event details:" << std::endl;*/
+    in >> *obj.event;
+
+    return in;
+
 }
