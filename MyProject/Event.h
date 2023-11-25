@@ -56,6 +56,9 @@ public:
 	//-= scad durata
 
 	void operator-=(double val);
+
+	//==
+	bool operator==(const Event& otherEvent) const;
 };
 
 

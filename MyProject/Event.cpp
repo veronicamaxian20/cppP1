@@ -177,3 +177,8 @@ std::ostream& operator<<(std::ostream& out, const Event& obj) {
 void Event::operator-=(double val) {
 	this->duration -= val;
 }
+
+bool Event::operator==(const Event& otherEvent) const {
+	return (strcmp(eventName, otherEvent.eventName) == 0) &&
+		(strcmp(date, otherEvent.date) == 0);
+}

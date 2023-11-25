@@ -15,7 +15,12 @@ int main() {
 	std::cout << "Movie Event:" << std::endl << movie << std::endl;
 	concert -= 20;
 	std::cout << "Concert Event after duration reduction:" << std::endl << concert << std::endl;
-
+	if (concert == movie) {
+		std::cout << "Event 1 is the same as Event 2" << std::endl;
+	}
+	else {
+		std::cout << "Event 1 is not the same as Event 2" << std::endl;
+	}
 
 	Ticket ticket;
 
