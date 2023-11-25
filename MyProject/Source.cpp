@@ -19,8 +19,17 @@ int main() {
 	std::cout << "Enter Ticket details:" << std::endl;
 	std::cin >> ticket;
 	ticket += 20; //adds 20 to price
+
+	if (!ticket) {
+		std::cout << endl << "The seat is in the first row!";
+	}
+	else {
+		std::cout << endl << "The seat is not in the first row!";
+	}
+
+
 	// Display the entered ticket details
-	std::cout << "Ticket details entered:" << std::endl;
+	std::cout << "\nTicket details entered:" << std::endl;
 	std::cout << ticket;
 
 	return 0;

@@ -205,3 +205,7 @@ std::istream& operator>>(std::istream& in, Ticket& obj) {
 void Ticket::operator+=(double val) {
     this->price += val;
 }
+
+bool Ticket::operator!() {
+    return this->idRow == 1;
+}

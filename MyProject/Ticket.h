@@ -53,6 +53,8 @@ public:
 	//operator +=  add val to price
 	void operator+=(double val);
 
+	//operator ! to verify if is in the first row
+	bool operator!();
 
 
 };
