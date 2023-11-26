@@ -7,26 +7,6 @@ using namespace std;
 int main() {
 
 
-//Event concert("Horia Brenciu", "15-11-2023");
-//concert.setEventType(Event::EVENT_TYPE::CONCERT);
-//concert.setDuration(120);
-
-//Event movie("Superman", "20-11-2023");
-//movie.setEventType(Event::EVENT_TYPE::MOVIE);
-//movie.setDuration(150);
-
-//std::cout << "Concert Event:" << std::endl << concert << std::endl;
-//std::cout << "Movie Event:" << std::endl << movie << std::endl;
-
-
-
-//if (concert == movie) {
-//	std::cout << "Event 1 is the same as Event 2" << std::endl;
-//}
-//else {
-//	std::cout << "Event 1 is not the same as Event 2" << std::endl;
-//}
-
 
 //ticket += 20; //adds 20 to price
 
@@ -134,6 +114,10 @@ int main() {
             std::cout << "Event after duration reduction:" << std::endl << event << std::endl;
             break;
         }
+        case 8: {
+            tickets += 20;
+            break;
+        }
         case 0:
             cout << "Exiting program.\n";
             break;
@@ -143,5 +127,31 @@ int main() {
 
     } while (choice != 0);
 
+
+
+    //I Tested the oerator ==
+    //Event concert("Horia Brenciu", "15-11-2023");
+    //concert.setEventType(Event::EVENT_TYPE::CONCERT);
+    //concert.setDuration(120);
+
+    //Event movie("Superman", "20-11-2023");
+    //movie.setEventType(Event::EVENT_TYPE::MOVIE);
+    //movie.setDuration(150);
+
+    //std::cout << "Concert Event:" << std::endl << concert << std::endl;
+    //std::cout << "Movie Event:" << std::endl << movie << std::endl;
+
+
+
+    //if (concert == movie) {
+    //	std::cout << "Event 1 is the same as Event 2" << std::endl;
+    //}
+    //else {
+    //	std::cout << "Event 1 is not the same as Event 2" << std::endl;
+    //}
+
     return 0;
+
+
+
 }

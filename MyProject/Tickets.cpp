@@ -122,4 +122,8 @@ void Tickets::displayTicket(int id)
 }
 
 
-
+void Tickets::operator+=(double val) {
+	for (int i = 0; i < nrTickets; ++i) {
+		(*(tickets[i])) += val;
+	}
+}

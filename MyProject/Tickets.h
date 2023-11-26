@@ -20,9 +20,12 @@ public:
 
 	void setTickets(int nrTickets, Ticket** tickets);
 
-	
+
 
 	bool validateTicket(int);
 	void addTicket(const Ticket&);
 	void displayTicket(int);
+
+
+	void operator+=(double val);
 };
