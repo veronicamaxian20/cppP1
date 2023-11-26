@@ -1,7 +1,7 @@
 #include "Tickets.h"
 
 Tickets::Tickets() {
-	//this->tickets = nullptr;
+	this->tickets = nullptr;
 	this->nrTickets = 0;
 }
 
@@ -71,5 +71,47 @@ void Tickets::setTickets(int nrTickets, Ticket* tickets)
 		throw new std::exception("Invalid ticket vector");
 	}
 }
+bool Tickets::validateTicket(int ticketId) {
+	for (int i = 0; i < nrTickets; i++)
+	{
+		if (ticketId == this->tickets[i]->getId())
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void Tickets::addTicket(const Ticket& ticket)
+{
+	Ticket** temp = new Ticket * [this->nrTickets + 1];
+	Ticket* t = new Ticket(ticket);
+
+	for (int i = 0; i < this->nrTickets; i++)
+	{
+		temp[i] = this->tickets[i];
+	}
+
+	temp[nrTickets] = t;
+
+	delete[] this->tickets;
+	this->tickets = temp;
+	this->nrTickets++;
+}
+
+
+void Tickets::displayTicket(int id)
+{
+	for (int i = 0; i < nrTickets; i++)
+	{
+		if (id == (*this->tickets[i]).getId())
+		{
+			std::cout << *this->tickets[i];
+			return;
+		}
+	}
+}
+
 
 
