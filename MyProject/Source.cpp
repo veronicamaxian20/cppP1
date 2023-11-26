@@ -6,72 +6,6 @@
 using namespace std;
 int main() {
 
-	Tickets tickets;
-
-	int numberOfTickets;
-	cout << "How many tickets would you like to add? (1 or 2): ";
-	cin >> numberOfTickets;
-	// Clear the input buffer
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	switch (numberOfTickets) {
-	case 1: {
-		Ticket ticket1;
-		cout << "\nEnter Ticket details for Ticket 1:" << endl;
-		cin >> ticket1;
-		tickets.addTicket(ticket1);
-		break;
-	}
-	case 2: {
-
-		Ticket ticket1, ticket2;
-		cout << "\nEnter Ticket details for Ticket 1:" << endl;
-		cin >> ticket1;
-		// Clear the input buffer
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-		cout << "\nEnter Ticket details for Ticket 2:" << endl;
-		cin >> ticket2;
-		tickets.addTicket(ticket1);
-		tickets.addTicket(ticket2);
-		break;
-	}
-	default:
-		cout << "Invalid choice. Please enter 1 or 2.\n";
-		return 1;
-	}
-
-	// Display the details of added tickets
-	for (int i = 1; i < tickets.getNrTickets() + 1; ++i) {
-		cout << "\nDisplaying details for Ticket with ID " << i << ":\n";
-		tickets.displayTicket(i);
-	}
-
-	return 0;
-}
-
-
-
-
-//// Validate a ticket
-//int ticketIdToValidate = 1;
-//if (tickets.validateTicket(ticketIdToValidate)) {
-//	std::cout << "Ticket with ID " << ticketIdToValidate << " is valid.\n";
-//}
-//else {
-//	std::cout << "Ticket with ID " << ticketIdToValidate << " is not valid.\n";
-//}
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Event concert("Horia Brenciu", "15-11-2023");
 //concert.setEventType(Event::EVENT_TYPE::CONCERT);
@@ -93,52 +27,121 @@ int main() {
 //	std::cout << "Event 1 is not the same as Event 2" << std::endl;
 //}
 
-//Ticket ticket;
-
-//std::cout << "\nEnter Ticket details:" << std::endl;
-//std::cin >> ticket;
 
 //ticket += 20; //adds 20 to price
 
 
-//std::cout << "\nWould you like to see your ticket? Y/N ";
-//char response1;
-//std::cin >> response1;
-//if (response1 == 'Y') {
-//	// Display the entered ticket details
-//	std::cout << "\nTicket details entered:" << std::endl;
-//	std::cout << ticket;
+    Tickets tickets;
+    Event event;
 
+    int choice;
+    do {
+        cout << "\n=== MENU ===\n";
+        cout << "[1] Add Ticket\n";
+        cout << "[2] Validate Ticket\n";
+        cout << "[3] Display Ticket\n";
+        cout << "[4] Verify if Seat is in the First Row\n";
+        cout << "[5] Add Event\n";
+        cout << "[6] Display Event\n";
+        cout << "[7] Reduce Duration of an Event\n";
+        cout << "[8] Add $20 to the ticket's price\n";
+        cout << "[0] Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-//	if (!ticket) {
-//		std::cout << endl << "The seat is in the first row!";
-//	}
-//	else {
-//		std::cout << endl << "The seat is not in the first row!";
-//	}
-//}
+        switch (choice) {
+        case 1: {
+            int numberOfTickets;
+            cout << "How many tickets would you like to add? (1 or 2): ";
+            cin >> numberOfTickets;
+            // Clear the input buffer
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            switch (numberOfTickets) {
+            case 1: {
+                Ticket ticket1;
+                cout << "\nEnter Ticket details for Ticket 1:" << endl;
+                cin >> ticket1;
+                tickets.addTicket(ticket1);
+                break;
+            }
+            case 2: {
+                Ticket ticket1, ticket2;
+                cout << "\nEnter Ticket details for Ticket 1:" << endl;
+                cin >> ticket1;
+                // Clear the input buffer
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+                cout << "\nEnter Ticket details for Ticket 2:" << endl;
+                cin >> ticket2;
+                // Clear the input buffer
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                tickets.addTicket(ticket1);
+                tickets.addTicket(ticket2);
+                break;
+            }
+            default:
+                cout << "Invalid choice. Please enter 1 or 2.\n";
+                break;
+            }
+            break;
+        }
+        case 2: {
+            int ticketIdToValidate;
+            cout << "Enter the ticket ID to validate: ";
+            cin >> ticketIdToValidate;
+            if (tickets.validateTicket(ticketIdToValidate)) {
+                cout << "Ticket with ID " << ticketIdToValidate << " is valid.\n";
+            }
+            else {
+                cout << "Ticket with ID " << ticketIdToValidate << " is not valid.\n";
+            }
+            break;
+        }
+        case 3: {
+            int ticketIdToDisplay;
+            cout << "Enter the ticket ID to display: ";
+            cin >> ticketIdToDisplay;
+            cout << "\nDisplaying details for Ticket with ID " << ticketIdToDisplay << ":\n";
+            tickets.displayTicket(ticketIdToDisplay);
+            break;
+        }
+        case 4: {
+            int ticketIdToVerify;
+            cout << "Enter the ticket ID to verify if the seat is in the first row: ";
+            cin >> ticketIdToVerify;
+            if (!ticketIdToVerify) {
+                std::cout << endl << "The seat is not in the first row!";
+                }
+                else {
+                std::cout << endl << "The seat is in the first row!";
+                }
+            break;
+        }
+        case 5: {
+            cout << "\nEnter Event details:" << endl;
+            // Clear the input buffer
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin >> event;
+            break;
+        }
+        case 6: {
+            cout << "\nDisplaying details for the Event:\n";
+            cout << event << endl;
+            break;
+        }
+        case 7: {
+            event -= 20;
+            std::cout << "Event after duration reduction:" << std::endl << event << std::endl;
+            break;
+        }
+        case 0:
+            cout << "Exiting program.\n";
+            break;
+        default:
+            cout << "Invalid choice. Please enter a valid option.\n";
+        }
 
+    } while (choice != 0);
 
-
-
-
-//std::cout << "\nWould you like to reduce the duration of the event? Y/N ";
-//char response;
-//std::cin >> response;
-//do
-//{
-//	switch (response)
-//	{
-//	case 'Y':
-//		concert -= 20;
-//		std::cout << "Concert Event after duration reduction:" << std::endl << concert << std::endl;
-//		break;
-//	case 'N':
-//		std::cout << "Ok, goodby!\n";
-//	}
-//} while (response != 'N');
-//return 0;
-//}
-
-
+    return 0;
+}
