@@ -9,7 +9,7 @@ class Ticket {
 	static constexpr int PRICE_VIP = 75;
 	static constexpr int PRICE_WHEELCHAIR = 40;
 	
-	static int* idRandom;
+	/*static int* idRandom;*/
 	static int contor;
 private:
 	int idTicket;

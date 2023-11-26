@@ -2,12 +2,12 @@
 #include "EventLocation.h"
 
 int Ticket::contor = 1;
-int* Ticket::idRandom = nullptr;
+//int* Ticket::idRandom = nullptr;
 
 Ticket::Ticket() : idTicket(contor++) {
-    if (!idRandom) {
+   /* if (!idRandom) {
         generateRandomID();
-    }    
+    }  */  
     holder = "";
     price = 0.0;
     event = nullptr;
@@ -17,9 +17,9 @@ Ticket::Ticket() : idTicket(contor++) {
 
 Ticket::Ticket(std::string holder, double price, Event* event) 
     :idTicket(contor++) {
-    if (!idRandom) {
+   /* if (!idRandom) {
         generateRandomID();
-    }
+    }*/
     this->holder = holder;
     this->price = price;
     this->event = event;
@@ -27,7 +27,7 @@ Ticket::Ticket(std::string holder, double price, Event* event)
     idSeat = 0;
 }
 Ticket::~Ticket(){
-    delete[] idRandom;
+    //delete idRandom;
     delete event;
 }
 
@@ -65,16 +65,16 @@ Ticket& Ticket::operator=(const Ticket& source) {
 }
 
 
-void Ticket::generateRandomID() {
-    idRandom = new int[100];
-    for (int i = 0; i < 100; i++) {
-        idRandom[i] = customRandom();
-    }
-}
-int Ticket::customRandom() {
-    contor = (contor * 16807) % 701;
-    return contor;
-}
+//void Ticket::generateRandomID() {
+//    idRandom = new int[100];
+//    for (int i = 0; i < 100; i++) {
+//        idRandom[i] = customRandom();
+//    }
+//}
+//int Ticket::customRandom() {
+//    contor = (contor * 16807) % 701;
+//    return contor;
+//}
 
 int Ticket::getId() const {
     return this->idTicket;
@@ -113,7 +113,12 @@ void Ticket::setPrice(double price) {
     }
 }
 void Ticket::setEvent(const Event& obj) {
-    *this->event = obj;
+    if (!event) {
+        event = new Event(obj);
+    }
+    else {
+        *event = obj;
+    }
 }
 void Ticket::setIdRow(int row) {
     if (row > 0 && row ) {

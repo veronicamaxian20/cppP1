@@ -5,15 +5,18 @@ Tickets::Tickets() {
 	this->nrTickets = 0;
 }
 
-Tickets::Tickets(int nrTickets, Ticket* tickets)
-:nrTickets(0), tickets(nullptr)
-{
-	this->nrTickets = nrTickets;
-	this->tickets = new Ticket * [nrTickets];
-	for (int i = 0; i < nrTickets; i++) {
-		this->tickets[i] = &tickets[i];
+Tickets::Tickets(int nrTickets, Ticket** tickets) : nrTickets(nrTickets), tickets(nullptr) {
+	if (nrTickets > 0 && tickets != nullptr) {
+		this->tickets = new Ticket * [nrTickets];
+		for (int i = 0; i < nrTickets; i++) {
+			this->tickets[i] = new Ticket(*(tickets[i]));
+		}
+	}
+	else {
+		throw new std::exception("Invalid ticket vector");
 	}
 }
+
 //copy cTor
 Tickets::Tickets(const Tickets& source)
 	:nrTickets(0), tickets(nullptr)
@@ -50,20 +53,24 @@ Tickets::~Tickets() {
 int Tickets::getNrTickets() const { return this->nrTickets; }
 Ticket** Tickets::getTickets() const { return this->tickets; } 
 
-
-void Tickets::setTickets(int nrTickets, Ticket* tickets)
+void Tickets::setTickets(int nrTickets, Ticket** tickets)
 {
 	if (nrTickets > 0 && tickets != nullptr)
 	{
 		this->nrTickets = nrTickets;
-
 		if (this->tickets != nullptr)
+		{
+			for (int i = 0; i < this->nrTickets; i++)
+			{
+				delete this->tickets[i];
+			}
 			delete[] this->tickets;
+		}
 
 		this->tickets = new Ticket * [nrTickets];
 		for (int i = 0; i < nrTickets; i++)
 		{
-			this->tickets[i] = &tickets[i];
+			this->tickets[i] = new Ticket(*(tickets[i]));
 		}
 	}
 	else
@@ -71,6 +78,7 @@ void Tickets::setTickets(int nrTickets, Ticket* tickets)
 		throw new std::exception("Invalid ticket vector");
 	}
 }
+
 bool Tickets::validateTicket(int ticketId) {
 	for (int i = 0; i < nrTickets; i++)
 	{

@@ -8,7 +8,9 @@ private:
 
 public:
 	Tickets();
-	Tickets(int, Ticket*);
+	Tickets(int nrTickets, Ticket** tickets);
+
+	//Tickets(int, Ticket*);
 	Tickets(const Tickets&);
 	~Tickets();
 	Tickets& operator=(const Tickets&);
@@ -16,7 +18,7 @@ public:
 	int getNrTickets() const; //const p/u ca nu vrem sa se modif nimic
 	Ticket** getTickets() const;
 
-	void setTickets(int, Ticket*);
+	void setTickets(int nrTickets, Ticket** tickets);
 
 	
 
