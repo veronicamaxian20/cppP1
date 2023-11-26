@@ -175,37 +175,42 @@ std::ostream& operator<<(std::ostream& out, const Ticket& obj)
 
     return out;
 }
-
 std::istream& operator>>(std::istream& in, Ticket& obj) {
-    //in.ignore();
-    std::cout << "Enter Holder : "; 
+    std::cout << "Enter Holder: ";
     std::getline(in, obj.holder);
 
-    std::string priceStr;
-    //std::cout << "Enter price: ";
-    //std::getline(in, priceStr);
+    do {
+        std::cout << "Enter price: ";
+        in >> obj.price;
+        if (obj.price <= 0.0) {
+            std::cout << "Invalid price. Please enter a positive value.\n";
+        }
+    } while (obj.price <= 0.0);
 
-    std::cout << "Enter price: ";
-    in >> obj.price;
-    //// Convert the string to double
-    //try {
-    //    obj.price = std::stod(priceStr);
-    //}
-    //catch (const std::invalid_argument&) {
-    //    std::cerr << "Invalid price format. Please enter a valid number." << std::endl;
-    //    //in.setstate(std::ios::failbit);  // Set the failbit to indicate a failure
-    //    return in;
-    //}
-    std::cout << "Enter row: ";
-    in >> obj.idRow;
-    std::cout << "Enter seat: ";
-    in >> obj.idSeat;
-    /*std::cout << "Enter Event details:" << std::endl;*/
-    //in >> *obj.event;
+    do {
+        std::cout << "Enter row: ";
+        in >> obj.idRow;
+        if (obj.idRow <= 0) {
+            std::cout << "Invalid row ID. Please enter a value greater than 0.\n";
+        }
+    } while (obj.idRow <= 0);
+
+    do {
+        std::cout << "Enter seat: ";
+        in >> obj.idSeat;
+        if (obj.idSeat <= 0) {
+            std::cout << "Invalid seat ID. Please enter a value greater than 0.\n";
+        }
+    } while (obj.idSeat <= 0);
+
+    // Clear the input buffer
+    in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
 
     return in;
-
 }
+
 
 void Ticket::operator+=(double val) {
     this->price += val;

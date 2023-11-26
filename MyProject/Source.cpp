@@ -23,8 +23,8 @@ int main() {
         cout << "[4] Verify if Seat is in the First Row\n";
         cout << "[5] Add Event\n";
         cout << "[6] Display Event\n";
-        cout << "[7] Reduce Duration of an Event\n";
-        cout << "[8] Add $20 to the ticket's price\n";
+        cout << "[7] Reduce Duration of an Event by 20\n";
+        cout << "[8] Add $20 to all tickets' price\n";
         cout << "[0] Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
